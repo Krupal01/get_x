@@ -24,7 +24,18 @@ class SecondScr extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(name != null ? name[0][nameKey] : "no Arg"),
-              ElevatedButton(onPressed: ()=>dataController.increseCount(), child: Obx(()=>Text(dataController.count.value.toString())))
+              ElevatedButton(
+                  onPressed: () => dataController.increseCount(),
+                  child: Obx(() => Text("OBX ${dataController.count.value}"))),
+              GetX<DataController>(
+                init: DataController(),
+                builder: (controller) {
+                  return ElevatedButton(
+                    onPressed: () => controller.increseCount(),
+                    child: Text("GetX ${controller.count.value}"),
+                  );
+                },
+              )
             ]),
       ),
     );
